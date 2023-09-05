@@ -11,20 +11,35 @@ const defaultInitialFormData = { title: "", description: "", priority: 1 };
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({ initialFormData = defaultInitialFormData, handleSave }) {
-  const [formData, setFormData] = useState(initialFormData);
+interface TodoFormInterface {
+  initialFormData: {
+    title: string;
+    description: string;
+    priority: number;
+  };
+  handleSave: Function;
+}
+
+interface FormDataInterface {
+    title: string;
+    description: string;
+    priority: number;
+}
+
+function TodoForm({ initialFormData = defaultInitialFormData, handleSave }: TodoFormInterface): JSX.Element {
+  const [formData, setFormData] = useState<FormDataInterface>(initialFormData);
 
   /** Update form input. */
-  function handleChange(evt) {
-    const input = evt.target;
+  function handleChange(evt: React.ChangeEvent<HTMLInputElement>): void {
+    const { name, value }= evt.target;
     setFormData(formData => ({
       ...formData,
-      [input.name]: input.value,
+      [name]: value,
     }));
   }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) {
+  function handleSubmit(evt: React.FormEvent): void {
     evt.preventDefault();
     handleSave(formData);
     setFormData(initialFormData);

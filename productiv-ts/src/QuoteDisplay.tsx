@@ -9,9 +9,18 @@ import "./QuoteDisplay.css";
  *
  * State: none
  */
-function QuoteDisplay({ getQuote, quote }) {
 
-  function firstQuote() {
+interface QuoteDisplayInterface {
+  getQuote: Function;
+  quote: {
+    text: string;
+    author: string;
+  };
+}
+
+function QuoteDisplay({ getQuote, quote }: QuoteDisplayInterface): JSX.Element {
+
+  function firstQuote(): JSX.Element {
     return <div className="QuoteDisplay">
       <button
           className="btn-sm QuoteDisplay-button"
@@ -20,7 +29,7 @@ function QuoteDisplay({ getQuote, quote }) {
     </div>
   }
 
-  function showQuote() {
+  function showQuote(): JSX.Element {
     return <div className="QuoteDisplay">
       <p><i>{quote.text} - {quote.author}</i></p>
       <button

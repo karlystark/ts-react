@@ -1,5 +1,5 @@
 import React from "react";
-
+import { ITodo } from "./TodoApp";
 import Todo from "./Todo";
 
 /** Shows the top todo.
@@ -10,7 +10,11 @@ import Todo from "./Todo";
  * TodoApp -> TopTodo
  */
 
-function TopTodo({ todos }) {
+interface TodosInterface {
+  todos: ITodo[];
+}
+
+function TopTodo({ todos }: TodosInterface): (JSX.Element | null) {
   if (todos.length === 0) return null;
 
   // lowest-priority # is the highest priority

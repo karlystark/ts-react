@@ -14,14 +14,27 @@ import QuoteDisplay from "./QuoteDisplay";
  *
  * App -> QuoteApp -> QuoteDisplay
  */
+
+interface ApiQuoteInterface {
+  quote: {
+  text: string;
+  author: string;
+  }
+}
+
+interface QuoteInterface {
+  text: string;
+  author: string;
+}
+
 function QuoteApp(): JSX.Element {
-  const [quote, setQuote] = useState<string | null>(null);
+  const [quote, setQuote] = useState({});
 
   /** retrieve a random quote from quotes API */
   async function getQuote(): Promise<void> {
     const response = await axios.get("https://inspo-quotes-api.herokuapp.com/quotes/random");
-    const data = response.data;
-    const randomQuote: string = data.quote;
+    const data: ApiQuoteInterface = response.data;
+    const randomQuote: QuoteInterface = data.quote;
     setQuote(randomQuote);
   }
 
