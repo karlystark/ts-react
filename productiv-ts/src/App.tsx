@@ -10,7 +10,7 @@ import "./App.css";
  * App -> TodoApp
  **/
 
-function App() {
+function App(): JSX.Element {
   return (
     <main className="App">
       <header className="container-fluid pt-4 pb-1">
@@ -20,7 +20,7 @@ function App() {
         </div>
       </header>
 
-      <section> 
+      <section>
         <QuoteApp/>
       </section>
 
@@ -43,7 +43,7 @@ function App() {
             title: "Go to bed",
             description: "In bed by 11:15",
             priority: 3,
-          },
+          }
         ]} />
 
         <Footer />
